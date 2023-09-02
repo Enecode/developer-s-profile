@@ -19,7 +19,7 @@ class DeveloperList(APIView):
 class DeveloperDetail(APIView):
     queryset = Developer.objects.all()
     serializer_class = DeveloperSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, developer_id):
         developers = Developer.objects.get(id=developer_id)
