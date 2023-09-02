@@ -1,13 +1,13 @@
 from django.urls import path
 
-from dev_profile_app.api import LoginApi, RegisterApi
+from dev_profile_app.api import RegisterApi
 
 from .views import DeveloperCreate, DeveloperDelete, DeveloperDetail, DeveloperList, DeveloperUpdate, ProjectCreate, ProjectDelete, ProjectDetail, ProjectList, ProjectUpdate
 
 app_name = 'dev_profile_app'
 
 urlpatterns = [
-    path('api/login/', LoginApi.as_view()),
+    # path('api/token/'),
     path('api/register/', RegisterApi.as_view()),
 
     path('api/developers/', DeveloperList.as_view()),
