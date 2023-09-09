@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Developer, Project
+from .models import AllData, Developer, Project, Stack, Technology
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -19,24 +19,29 @@ class RegisterSerializer(serializers.ModelSerializer):
                                         first_name=validated_data['first_name'], last_name=validated_data['last_name'])
         return user
 
-class UserSerializer(serializers.ModelSerializer):
+
+class AllDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = AllData
         fields = '__all__'
 
-class DeveloperSerializer(serializers.ModelSerializer):
+class StackSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Developer
-        fields = ['id', 'first_name', 'last_name', 'profile_picture', 'bio', 'skills', 'github', 'linkedin', 'twitter', 'website', 'address', 'gender']
-        extra_kwargs = {'user': {'read_only': True}}
+        model = Stack
+        fields = '__all__'
 
-# class ProjectSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Project
-#         fields = ['id', 'title', 'description', 'technologies_used', 'project_url', 'developer']
-#         extra_kwargs = {'developer': {'read_only': True}}
+class TechnologySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Technology
+        fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'description', 'technologies_used', 'project_url', 'developer']
+        fields = ['id', 'title', 'description', 'project_url']
+
+class DeveloperSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Developer
+        fields = ['id', 'first_name', 'last_name', 'picture', 'email', 'bio', 'skills', 'github', 'linkedin', 'twitter', 'website', 'address', 'gender', 'stacks', 'projects']
