@@ -1,10 +1,13 @@
 # webapp/urls.py
 from django.urls import path
+
+from dev_profile_app.api import RegisterApi
 from .views import DeveloperListCreateView, DeveloperDetailView, \
     ProjectListCreateView, ProjectDetailView, StackListCreateView, \
     StackDetailView, TechnologyListCreateView, TechnologyDetailView, AllDataListCreateView, AllDataDetailView
 
 urlpatterns = [
+    path('api/register/', RegisterApi.as_view()),
     path('api/developers/', DeveloperListCreateView.as_view(), name='developer-list-create'),
     path('api/developers/<int:pk>/', DeveloperDetailView.as_view(), name='developer-detail'),
 
