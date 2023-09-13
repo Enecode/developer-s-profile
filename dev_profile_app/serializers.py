@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import AllData, Developer, Project, Stack, Technology, Experience
+from .models import AllData, Developer, Project, Stack, Technology, Experience, Education
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -48,9 +48,14 @@ class DeveloperSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Developer
-        fields = ['id', 'first_name', 'last_name', 'picture', 'email', 'bio', 'skills', 'github', 'linkedin', 'twitter', 'website', 'address', 'gender', 'stacks', 'projects']
+        fields = ['id', 'first_name', 'last_name', 'picture', 'email', 'bio', 'skills', 'github', 'linkedin', 'twitter', 'website', 'address', 'gender', 'stacks', 'projects', 'experiences', 'educations', 'technologies', ]
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
         fields = ('id', 'title', 'description', 'start_date', 'end_date')
+
+class EducationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = ('id', 'school', 'degree', 'start_date', 'end_date')

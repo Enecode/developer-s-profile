@@ -1,32 +1,33 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 
-from .models import AllData, Developer, Project, Stack, Technology
+from .models import AllData, Developer, Experience, Project, Stack, Education, Technology
 from .serializers import (AllDataSerializer, DeveloperSerializer,
-                          ProjectSerializer, StackSerializer,
-                          TechnologySerializer)
+                          ExperienceSerializer, ProjectSerializer, EducationSerializer,
+                          StackSerializer, TechnologySerializer)
+
 
 class AllDataListCreateView(generics.ListCreateAPIView):
     queryset = AllData.objects.all()
     serializer_class = AllDataSerializer
-    permission_classes = [IsAuthenticated]
+
 
 class AllDataDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AllData.objects.all()
     serializer_class = AllDataSerializer
-    permission_classes = [IsAuthenticated]
+
 
 class DeveloperListCreateView(generics.ListCreateAPIView):
     queryset = Developer.objects.all()
     serializer_class = DeveloperSerializer
-    permission_classes = [IsAuthenticated]
+
 
 class DeveloperDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Developer.objects.all()
     serializer_class = DeveloperSerializer
-    permission_classes = [IsAuthenticated]
+
 
 class ProjectListCreateView(generics.ListCreateAPIView):
     queryset = Project.objects.all()
@@ -51,3 +52,19 @@ class TechnologyListCreateView(generics.ListCreateAPIView):
 class TechnologyDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Technology.objects.all()
     serializer_class = TechnologySerializer
+
+class ExperienceListCreateView((generics.ListCreateAPIView)):
+    queryset = Experience.objects.all()
+    serializer_class = ExperienceSerializer
+
+class ExperienceDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Experience.objects.all()
+    serializer_class = ExperienceSerializer
+
+class EducationListCreateView((generics.ListCreateAPIView)):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
+
+class EducationDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer

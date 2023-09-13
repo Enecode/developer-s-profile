@@ -1,17 +1,24 @@
 # webapp/urls.py
 from django.urls import path
 
+from dev_profile_app.api import RegisterApi
+
 from .views import (AllDataDetailView, AllDataListCreateView,
                     DeveloperDetailView, DeveloperListCreateView, ExperienceDetailView, ExperienceListCreateView,
                     ProjectDetailView,
                     ProjectListCreateView, StackDetailView,
-                    StackListCreateView, TechnologyDetailView,
+                    StackListCreateView, TechnologyDetailView, EducationDetailView, EducationListCreateView,
                     TechnologyListCreateView)
 
 urlpatterns = [
+    path('api/register/', RegisterApi.as_view(), name='register'),
     path('api/developers/', DeveloperListCreateView.as_view(), name='developer-list-create'),
     path('api/developers/<int:pk>/', DeveloperDetailView.as_view(), name='developer-detail'),
 
+    path('api/educations/', EducationListCreateView.as_view(), name='education-list-create'),
+    path('api/educations/<int:pk>/', EducationDetailView.as_view(), name='education-detail'),
+
+   
     path('api/experiences/', ExperienceListCreateView.as_view(), name='experience-list-create'),
     path('api/experiences/<int:pk>/', ExperienceDetailView.as_view(), name='experience-detail'),
 
