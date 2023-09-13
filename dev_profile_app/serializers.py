@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import AllData, Developer, Project, Stack, Technology
+from .models import AllData, Developer, Project, Stack, Technology, Experience
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -18,7 +18,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(validated_data['username'], password=validated_data['password'],
                                         first_name=validated_data['first_name'], last_name=validated_data['last_name'])
         return user
-
+    
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 class AllDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +49,8 @@ class DeveloperSerializer(serializers.ModelSerializer):
     class Meta:
         model = Developer
         fields = ['id', 'first_name', 'last_name', 'picture', 'email', 'bio', 'skills', 'github', 'linkedin', 'twitter', 'website', 'address', 'gender', 'stacks', 'projects']
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
+        fields = ('id', 'title', 'description', 'start_date', 'end_date')
