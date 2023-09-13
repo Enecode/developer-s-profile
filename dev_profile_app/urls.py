@@ -1,12 +1,19 @@
 # webapp/urls.py
 from django.urls import path
-from .views import DeveloperListCreateView, DeveloperDetailView, \
-    ProjectListCreateView, ProjectDetailView, StackListCreateView, \
-    StackDetailView, TechnologyListCreateView, TechnologyDetailView, AllDataListCreateView, AllDataDetailView
+
+from .views import (AllDataDetailView, AllDataListCreateView,
+                    DeveloperDetailView, DeveloperListCreateView, ExperienceDetailView, ExperienceListCreateView,
+                    ProjectDetailView,
+                    ProjectListCreateView, StackDetailView,
+                    StackListCreateView, TechnologyDetailView,
+                    TechnologyListCreateView)
 
 urlpatterns = [
     path('api/developers/', DeveloperListCreateView.as_view(), name='developer-list-create'),
     path('api/developers/<int:pk>/', DeveloperDetailView.as_view(), name='developer-detail'),
+
+    path('api/experiences/', ExperienceListCreateView.as_view(), name='experience-list-create'),
+    path('api/experiences/<int:pk>/', ExperienceDetailView.as_view(), name='experience-detail'),
 
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list-create'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
